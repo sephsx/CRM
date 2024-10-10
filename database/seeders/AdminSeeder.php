@@ -14,5 +14,11 @@ class AdminSeeder extends Seeder
     public function run(): void
     {
         User::factory()->create(['is_admin' => true]);
+        $this->call([
+            UserSeeder::class,
+            ProjectSeeder::class,
+            ClientSeeder::class,
+            TaskSeeder::class
+        ]);
     }
 }

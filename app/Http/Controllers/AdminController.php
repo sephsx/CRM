@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -11,12 +12,18 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard');
+        $totalUser = User::count();
+        return view('admin.dashboard', compact('totalUser'));
     }
 
     public function user()
     {
         return view('admin.user.users');
+    }
+    public function getUser()
+    {
+        $getUsers = User::paginate(10);
+        return view('admin.user.users', compact('getUsers'));
     }
     public function project()
     {
