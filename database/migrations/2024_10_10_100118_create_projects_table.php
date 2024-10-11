@@ -17,11 +17,10 @@ return new class extends Migration
             $table->string('Description');
             $table->timestamp('deadline');
             $table->string('assigned_user');
-            $table->string('status');
+            $table->string('assigned_client');
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      */

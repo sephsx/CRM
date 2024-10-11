@@ -21,6 +21,10 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/user/', [AdminController::class, 'getUser'])->name('admin.user.users');
+    Route::get('/admin/client', [AdminController::class, 'getClient'])->name('admin.client.clients');
+    Route::get('/admin/projects', [AdminController::class, 'createProject'])->name('admin.project.projects');
+    Route::get('/admin/project/create', [AdminController::class, 'createProject'])->name('admin.project.create');
+    Route::post('/admin/project/store', [AdminController::class, 'storeProject'])->name('admin.project.store');
 });
 
 

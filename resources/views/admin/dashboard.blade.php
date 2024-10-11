@@ -15,7 +15,7 @@
         </div>
         <div class="text-center card-body">
             <!-- Center content in card body -->
-            <h4 class="card-title text-success">Total Users</h4>
+            <h4 class="card-title text-primary">Total Users</h4>
             <div class="my-3">
                 <div class="text-large" style="font-size: 3rem; font-weight: bold;">
                     {{ $totalUser }}
@@ -25,25 +25,33 @@
     </div>
 
     <div class="mb-3 card border-secondary" style="max-width: 20rem;">
-        <div class="card-header">
-            <i class='bx bxs-group nav_icon'></i>
+        <div class="card-header d-flex align-items-center">
+            <i class='bx bx-group nav_icon me-2'></i>
             <span>Clients</span>
         </div>
-        <div class="card-body">
-            <h4 class="card-title">Secondary card title</h4>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
+        <div class="text-center card-body">
+            <!-- Center content in card body -->
+            <h4 class="card-title text-primary">Total Clients</h4>
+            <div class="my-3">
+                <div class="text-large" style="font-size: 3rem; font-weight: bold;">
+                    {{ $totalClient }}
+                </div>
+            </div>
         </div>
     </div>
     <div class="mb-3 card border-secondary" style="max-width: 20rem;">
-        <div class="card-header">
-            <i class='bx bx-briefcase nav_icon'></i>
+        <div class="card-header d-flex align-items-center">
+            <i class='bx bx-briefcase nav_icon me-2'></i>
             <span>Projects</span>
         </div>
-        <div class="card-body">
-            <h4 class="card-title">Secondary card title</h4>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
+        <div class="text-center card-body">
+            <!-- Center content in card body -->
+            <h4 class="card-title text-primary">Total Projects</h4>
+            <div class="my-3">
+                <div class="text-large" style="font-size: 3rem; font-weight: bold;">
+                    {{ $totalProject}}
+                </div>
+            </div>
         </div>
     </div>
     <div class="mb-3 card border-secondary" style="max-width: 20rem;">

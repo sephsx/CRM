@@ -15,12 +15,12 @@
                 <i class='bx bx-user nav_icon'></i>
                 <span class="nav_name">Users</span>
             </a>
-            <a href="#" class="nav_link">
+            <a href="{{ route('admin.client.clients') }}" class="nav_link">
                 <i class='bx bxs-group nav_icon'></i>
-                <span class="nav_name">Clients</span>
+                <span class="nav_name {{ request()->routeIs('admin.client.clients') ? 'active' : '' }}">Clients</span>
             </a>
-            <a href="#"
-                class="nav_link">
+            <a href="{{ route('admin.project.projects') }}"
+                class="nav_link {{ request()->routeIs('admin.project.projects') ? 'active' : '' }}">
                 <i class='bx bx-briefcase nav_icon'></i>
                 <span class="nav_name">Projects</span>
             </a>

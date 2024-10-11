@@ -4,7 +4,7 @@
 
 @section('content')
 <x-header>
-    <h4 class="fw-semibold nav_logo text-success">Users</h4>
+    <h4 class="fw-semibold nav_logo text-primary">Users</h4>
 </x-header>
 <table class="table p-4 table-hover">
     <hr>
