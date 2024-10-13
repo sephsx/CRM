@@ -9,11 +9,10 @@ class Project extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'Title',
-        'Description',
+        'title',         // Change to lowercase
+        'description',   // Change to lowercase
         'deadline',
         'assigned_user',
         'assigned_client',
     ];
-
 }

@@ -21,9 +21,9 @@ class ProjectFactory extends Factory
         return [
             'title' => fake()->sentence(),         // Generates a fake sentence for the title
             'description' => fake()->sentence(),   // Generates a fake sentence for the description
-           'deadline' => Carbon::now()->addDays(rand(1, 365)),                 // Current timestamp using Laravel's now
+            'deadline' => Carbon::now()->addDays(rand(1, 365)),                 // Current timestamp using Laravel's now
             'assigned_user' => rand(1, 100),
-            'status' => Str::random(),
+            'assigned_client' => rand(1, 100),
         ];
     }
 }

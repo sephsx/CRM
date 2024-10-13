@@ -9,7 +9,7 @@
 <div class="container my-5">
     <span class="text-primary fs-4">Create Project</span>
     <hr>
-    <form action="{{ route('admin.project.store') }}" method="post">
+    <form action="{{ route('admin.project.index') }}" method="post">
         @csrf
         <div class="row">
             <!-- Title -->

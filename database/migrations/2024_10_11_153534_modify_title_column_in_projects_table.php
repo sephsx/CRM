@@ -12,20 +12,14 @@ return new class extends Migration
     public function up()
     {
         Schema::table('projects', function (Blueprint $table) {
-            // Check if the column does not exist before adding it
-            if (!Schema::hasColumn('projects', 'assigned_client')) {
-                $table->unsignedBigInteger('assigned_client')->nullable()->after('assigned_user');
-            }
+            $table->string('Title')->default('Default Title')->change();
         });
     }
 
     public function down()
     {
         Schema::table('projects', function (Blueprint $table) {
-            // Drop the column only if it exists
-            if (Schema::hasColumn('projects', 'assigned_client')) {
-                $table->dropColumn('assigned_client');
-            }
+            $table->string('Title')->nullable()->change(); // Change back if needed
         });
     }
 };

@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('projects', function (Blueprint $table) {
-            //
+            // Only add if it doesn't exist
+            if (!Schema::hasColumn('projects', 'assigned_client')) {
+                $table->unsignedBigInteger('assigned_client')->after('assigned_user');
+            }
         });
     }
 
@@ -23,6 +26,7 @@ return new class extends Migration
     {
         Schema::table('projects', function (Blueprint $table) {
             //
+            $table->dropColumn('assigned_client');
         });
     }
 };

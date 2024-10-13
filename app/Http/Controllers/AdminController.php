@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
 use App\Models\User;
 use App\Models\Client;
 use App\Models\Project;
@@ -17,46 +18,46 @@ class AdminController extends Controller
         $totalClient = Client::count();
         $totalUser = User::count();
         $totalProject = Project::count();
-        return view('admin.dashboard', compact(['totalUser', 'totalClient', 'totalProject']));
+        $totalTask = Task::count();
+        return view('admin.dashboard', compact(['totalUser', 'totalClient', 'totalProject', 'totalTask']));
     }
 
     public function user()
     {
-        return view('admin.user.users');
+        return view('admin.user.index');
     }
     public function getUser()
     {
         $getUsers = User::paginate(10);
-        return view('admin.user.users', compact('getUsers'));
+        return view('admin.user.index', compact('getUsers'));
     }
 
     public function getClient()
     {
         $getClients = Client::paginate(10);
-        return view('admin.client.clients', compact('getClients'));
+        return view('admin.client.index', compact('getClients'));
     }
     public function createProject()
     {
-        $users = User::all();
+        $users = User::where('is_admin', '!=', 1)->get();
         $clients = Client::all();
-        return view('admin.project.projects', compact(['users', 'clients']));
+        return view('admin.project.index', compact(['users', 'clients']));
     }
 
     public function storeProject(Request $request)
     {
         $request->validate([
-            'title' => 'required',
-            'description' => 'required',
+            'title' => 'required|string|max:255',          // Change to lowercase
+            'description' => 'required|string',             // Add 'string' to the validation
             'deadline' => 'required|date',
             'assigned_user' => 'required|exists:users,id',
             'assigned_client' => 'required|exists:clients,id',
         ]);
 
         Project::create($request->all());
-        return redirect()->route('admin.project.projects')->with('success', 'Project created successfully');
+        return redirect()->route('admin.project.projects')->with('success', 'Project created successfully!');
     }
-
-
+    
     /*
          'Title',
         'Description',
@@ -67,6 +68,12 @@ class AdminController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+
+    public function getTask()
+    {
+        $tasks = Task::paginate(10);
+        return view('admin.task.index', compact('tasks'));
+    }
     public function create()
     {
         //
