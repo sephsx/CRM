@@ -47,20 +47,22 @@
 
         <!-- Projects Card -->
         <div class="mb-3 col-sm-12 col-md-6 col-lg-4">
-            <div class="card border-secondary h-100">
-                <div class="card-header d-flex align-items-center">
-                    <i class='bx bx-briefcase nav_icon me-2'></i>
-                    <span>Projects</span>
-                </div>
-                <div class="text-center card-body">
-                    <h4 class="card-title text-primary">Total Projects</h4>
-                    <div class="my-3">
-                        <div class="text-large" style="font-size: 3rem; font-weight: bold;">
-                            {{ $totalProject }}
+            <a href="{{ route('admin.project.showProjects') }}">
+                <div class="card border-secondary h-100">
+                    <div class="card-header d-flex align-items-center">
+                        <i class='bx bx-briefcase nav_icon me-2'></i>
+                        <span>Projects</span>
+                    </div>
+                    <div class="text-center card-body">
+                        <h4 class="card-title text-primary">Total Projects</h4>
+                        <div class="my-3">
+                            <div class="text-large" style="font-size: 3rem; font-weight: bold;">
+                                {{ $totalProject }}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
 
         <!-- Tasks Card -->

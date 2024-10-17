@@ -57,7 +57,11 @@ class AdminController extends Controller
         Project::create($request->all());
         return redirect()->route('admin.project.projects')->with('success', 'Project created successfully!');
     }
-    
+    public function showProjects()
+    {
+        $project = Project::all();
+        return view('admin.project.showProject', compact('project'));
+    }
     /*
          'Title',
         'Description',

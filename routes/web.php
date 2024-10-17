@@ -24,6 +24,7 @@ Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::get('/admin/client', [AdminController::class, 'getClient'])->name('admin.client.index');
     Route::get('/admin/projects', [AdminController::class, 'createProject'])->name('admin.project.index');
     Route::post('/admin/projects', [AdminController::class, 'storeProject'])->name('admin.project.index');
+    Route::get('/admin/projects', [AdminController::class, 'showProjects'])->name('admin.project.showProjects');
     Route::get('admin/task', [AdminController::class, 'getTask'])->name('admin.task.index');
 });
 
