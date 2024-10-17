@@ -4,43 +4,56 @@
 
 @section('content')
 <x-header>
-    <h4 class="fw-semibold nav_logo text-primary">Project Dashboard</h4>
+    <div class="container py-3 d-flex justify-content-between align-items-center">
+        <h4 class="mb-0 fw-semibold nav_logo text-primary">Project Dashboard</h4>
+
+        <form class="d-flex" role="search" method="get" action="{{ route('admin.project.showProjects') }}">
+            <input class="form-control me-2" type="search" name="query" placeholder="Search by title"
+                aria-label="Search" value="{{ request('query') }}">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
 </x-header>
 
 <div class="container mt-5">
+    @if($projects->isEmpty())
+    <div class="text-center alert alert-warning" role="alert">
+        No projects available.
+    </div>
+    @else
     <div class="row g-4">
-        @foreach($project as $projects)
+        @foreach($projects as $project)
         <div class="col-12 col-md-4">
-            <!-- For 3 columns per row -->
             <div class="border-0 shadow-lg card h-100">
                 <div class="text-white card-header bg-gradient-primary rounded-top">
-                    <h5 class="mb-0 text-dark">Project: <strong>{{ $projects->Title }}</strong></h5>
+                    <h5 class="mb-0 text-dark">Project: <strong>{{ $project->Title }}</strong></h5>
                 </div>
                 <div class="p-4 card-body">
                     <table class="table table-hover">
                         <tr>
                             <th>Description</th>
-                            <td>{{ $projects->Description }}</td>
+                            <td>{{ $project->Description }}</td>
                         </tr>
                         <tr>
                             <th>Deadline</th>
-                            <td><span class="badge bg-danger">{{ $projects->deadline }}</span></td>
+                            <td><span class="badge bg-danger">{{ \Carbon\Carbon::parse($project->deadline)->format('M d,
+                                    Y') }}</span></td>
                         </tr>
                         <tr>
                             <th>Assigned User</th>
-                            <td><span class="badge bg-info">{{ $projects->assigned_user }}</span></td>
+                            <td><span class="badge bg-info">{{ $project->user->name ?? 'N/A' }}</span></td>
                         </tr>
                         <tr>
                             <th>Assigned Client</th>
-                            <td><span class="badge bg-success">{{ $projects->assigned_client }}</span></td>
+                            <td><span class="badge bg-success">{{ $project->client->company ?? 'N/A' }}</span></td>
                         </tr>
                         <tr>
                             <th>Created At</th>
-                            <td>{{ \Carbon\Carbon::parse($projects->created_at)->format('M d, Y h:i A') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($project->created_at)->format('M d, Y h:i A') }}</td>
                         </tr>
                         <tr>
                             <th>Updated At</th>
-                            <td>{{ \Carbon\Carbon::parse($projects->updated_at)->format('M d, Y h:i A') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($project->updated_at)->format('M d, Y h:i A') }}</td>
                         </tr>
                     </table>
                 </div>
@@ -52,6 +65,7 @@
         </div>
         @endforeach
     </div>
+    @endif
 </div>
 
 @endsection

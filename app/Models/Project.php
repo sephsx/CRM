@@ -15,4 +15,13 @@ class Project extends Model
         'assigned_user',
         'assigned_client',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'assigned_user');
+    }
+    public function client()
+    {
+        return $this->belongsTo(Client::class, 'assigned_client');
+    }
 }

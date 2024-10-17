@@ -57,10 +57,22 @@ class AdminController extends Controller
         Project::create($request->all());
         return redirect()->route('admin.project.projects')->with('success', 'Project created successfully!');
     }
-    public function showProjects()
+    public function showProjects(Request $request)
     {
-        $project = Project::all();
-        return view('admin.project.showProject', compact('project'));
+        $projects = Project::with(['user', 'client'])->get();
+        $query = $request->input('query');
+
+        // If a query is provided, filter projects by title
+        if ($query) {
+            $projects = Project::where('Title', 'LIKE', "%{$query}%")
+                ->with(['user', 'client'])  // Eager load user and client relations
+                ->get();
+        } else {
+            // If no search query, return all projects
+            $projects = Project::with(['user', 'client'])->get();
+        }
+
+        return view('admin.project.showProject', compact('projects'));
     }
     /*
          'Title',
